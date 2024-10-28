@@ -1,0 +1,226 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}
+.main-div{
+  background-color: #4384C5;
+}
+/* Main container */
+.main-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f5f5f5;
+}
+
+/* Child container */
+.child-div {
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 40px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;  width: 90%;
+  max-width: 400px;
+  text-align: center;
+}
+
+/* Logo and title */
+figure {
+  margin: 0;
+  padding: 0;
+}
+
+figure img {
+  border-radius: 50%;
+  margin-bottom: 15px;
+}
+
+figcaption {
+  font-size: 1.2rem;
+  color: #333;
+  font-weight: 600;
+  margin-top: 10px;
+}
+
+/* Input and add button */
+/* Add Items container */
+.addItems {
+  position: relative;
+  /* To position the icon inside the input */
+  display: flex;
+  align-items: center;
+  width: 100%;
+  max-width: 400px;
+}
+
+/* Style the input */
+.addItems input {
+  width: 100%;
+  padding: 10px 40px 10px 15px;
+  /* Padding adjusted for icon */
+  font-size: 1rem;
+  border: 2px solid #ddd;
+  border-radius: 5px;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+/* Focus effect on input */
+.addItems input:focus {
+  border-color: #6200ea;
+  box-shadow: 0 0 5px rgba(98, 0, 234, 0.5);
+}
+
+/* Positioning the add button icon inside the input field */
+.addItems .add-btn {
+  position: absolute;
+  right: 10px;
+  /* Align to the right */
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.5rem;
+  color: #6200ea;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+/* Hover effect on the button */
+.addItems .add-btn:hover {
+  transform: translateY(-50%) scale(1.1);
+}
+.add-btn {
+  font-size: 1.5rem;
+  color: #6200ea;
+  cursor: pointer;
+  margin-left: 10px;
+  transition: transform 0.3s ease;
+}
+
+.add-btn:hover {
+  transform: scale(1.1);
+}
+
+/* Show Items */
+.showItems {
+  margin-top: 20px;
+}
+
+.eachItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f9f9f9;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  transition: background-color 0.3s ease;
+}
+
+.eachItem:hover {
+  background-color: #ececec;
+}
+
+.eachItem h3 {
+  flex: 1;
+  margin: 0;
+  font-size: 1.1rem;
+  color: #333;
+}
+
+/* Control buttons */
+.eachItem .add-btn {
+  font-size: 1.2rem;
+  color: #6200ea;
+  margin-left: 10px;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.eachItem .add-btn:hover {
+  transform: scale(1.2);
+  color: #d500f9;
+}
+
+/* Check List Button */
+.btn {
+  background-color: #6200ea;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.btn:hover {
+  background-color: #7644b3;
+}
+.effect04 {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+  color: white;
+  background-color: #7644b3;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.effect04:hover span {
+  opacity: 0;
+}
+
+.effect04::after {
+  content: attr(data-sm-link-text);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.effect04:hover::after {
+  opacity: 1;
+}
