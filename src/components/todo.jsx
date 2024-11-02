@@ -1,61 +1,110 @@
 import { useState } from "react";
 import todo from "../images/todologo.svg";
+
 const Todo = () => {
   const [inputData, setInputData] = useState("");
   const [items, setItems] = useState([]);
+  const [subItemData, setSubItemData] = useState({}); // to handle sub-item input
 
+  // Add main item
   const addItem = () => {
-    if (!inputData) {
-      /* empty */
-    } else {
-      setItems([...items, inputData]);
-      setInputData("");
-    }
+    if (!inputData) return;
+    setItems([
+      ...items,
+      { text: inputData, subItems: [], showSubItems: false },
+    ]);
+    setInputData("");
   };
 
-  //Delete Item
+  // Add sub-item
+  const addSubItem = (index) => {
+    if (!subItemData[index]) return;
+    const newItems = [...items];
+    newItems[index].subItems.push(subItemData[index]);
+    setItems(newItems);
+    setSubItemData({ ...subItemData, [index]: "" });
+  };
+
+  // Delete main item
   const deleteItem = (id) => {
-    const updateditems = items.filter((elem, ind) => {
-      return ind !== id;
-    });
-    setItems(updateditems);
+    const updatedItems = items.filter((_, ind) => ind !== id);
+    setItems(updatedItems);
   };
 
-  //remove All
+  // Toggle sub-items visibility
+  const toggleSubItems = (index) => {
+    const newItems = [...items];
+    newItems[index].showSubItems = !newItems[index].showSubItems;
+    setItems(newItems);
+  };
+
+  // Remove all items
   const removeAll = () => {
     setItems([]);
   };
+
   return (
     <>
       <div className="main-div">
         <div className="child-div">
           <figure>
-            <img src={todo} alt="todologo" width="200px" height="200px"></img>
+            <img src={todo} alt="todologo" width="200px" height="200px" />
             <figcaption>Make Your Own List Here...</figcaption>
           </figure>
           <div className="addItems">
             <input
               type="text"
-              placeholder="Add Items.. "
+              placeholder="Add Items.."
               value={inputData}
               onChange={(e) => setInputData(e.target.value)}
             />
             <i className="bi bi-plus-lg add-btn" onClick={addItem}></i>
           </div>
           <div className="showItems">
-            {items.map((elem, ind) => {
-              return (
-                <div className="eachItem" key={ind}>
-                  <h3>{elem}</h3>
-                  <i className="bi bi-plus-lg add-btn"></i>
-                  <i className="bi bi-chevron-right add-btn"></i>
-                  <i
-                    className="bi bi-trash delete-btn"
-                    onClick={() => deleteItem(ind)}
-                  ></i>
-                </div>
-              );
-            })}
+            {items.map((item, index) => (
+              <div className="eachItem" key={index}>
+                <h3>{item.text}</h3>
+
+                <i
+                  className="bi bi-chevron-right add-btn"
+                  onClick={() => toggleSubItems(index)}
+                ></i>
+                <i
+                  className="bi bi-trash delete-btn"
+                  onClick={() => deleteItem(index)}
+                ></i>
+
+                {/* Sub-items display */}
+                {item.showSubItems && (
+                  <div className="subItems">
+                    <div className="subItem-input">
+                      {" "}
+                      <input
+                        type="text"
+                        placeholder="Add Sub-item..."
+                        value={subItemData[index] || ""}
+                        onChange={(e) =>
+                          setSubItemData({
+                            ...subItemData,
+                            [index]: e.target.value,
+                          })
+                        }
+                      />
+                      <i
+                        className="bi bi-plus-lg add-btn"
+                        onClick={() => addSubItem(index)}
+                      ></i>
+                    </div>
+
+                    <ul>
+                      {item.subItems.map((subItem, subIndex) => (
+                        <li key={subIndex}>{subItem}</li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+              </div>
+            ))}
           </div>
           <div className="showItems">
             <button
@@ -71,4 +120,5 @@ const Todo = () => {
     </>
   );
 };
+
 export default Todo;
